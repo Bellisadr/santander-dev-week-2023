@@ -1,3 +1,37 @@
+
+# Desafio Dio
+
+Este projeto foi desenvolvido como parte do desafio **Santander Dev Week 2023** da DIO. Trata-se de uma API RESTful completa para gerenciar clientes de um banco e seus produtos financeiros.
+
+O foco principal foi explorar as novidades do **Spring Boot 3** e **Java 17**, além de aplicar boas práticas de arquitetura.
+
+
+## Minha Melhoria: Tratamento de Erro Personalizado
+
+Além da estrutura base proposta no desafio, implementei uma melhoria na **Experiência de Uso da API** focada na clareza das mensagens de erro.
+
+### Mensagens Dinâmicas de "Not Found" (404)
+
+Em vez de retornar mensagens genéricas ou vazias quando um usuário não é encontrado, implementei uma lógica para retornar qual ID específico falhou.
+
+* **O Problema:** Ao buscar um ID inexistente (`GET /users/999`), a API padrão retornava "Resource ID not found.".
+* **Minha Solução:**
+    1.  No `UserServiceImpl`, personalizei a exceção `NoSuchElementException` para incluir o ID buscado na mensagem.
+    2.  No `GlobalExceptionHandler`, capturei essa mensagem dinâmica e a enviei no corpo da resposta.
+
+**Exemplo de Resposta (Antes):**
+> `404 Not Found` (Resource ID not found)
+
+**Exemplo de Resposta (Minha Versão):**
+> Status: `404 Not Found`
+> Body: `"Usuário com ID 999 não encontrado!"`
+
+> <img width="343" height="128" alt="image" src="https://github.com/user-attachments/assets/65fec42d-0a62-48db-adb1-168c4eb3978c" />
+
+
+---
+
+
 # Santander Dev Week 2023
 
 Java RESTful API criada para a Santander Dev Week.
