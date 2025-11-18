@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Usuário com ID " + id + " não encontrado!"));
     }
 
     @Override
